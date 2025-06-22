@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synergychat-crawler-api
+  labels:
+    app: synergychat-crawler-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: synergychat-crawler-api
+  template:
+    metadata:
+      labels:
+        app: synergychat-crawler-api
+    spec:
+      containers:
+        - name: synergychat-crawler-api
+          image: bootdotdev/synergychat-crawler:latest
+          envFrom:
+            - configMapRef:
+                name: synergychat-crawler-configmap
